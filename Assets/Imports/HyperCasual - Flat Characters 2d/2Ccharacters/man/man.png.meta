@@ -1,0 +1,732 @@
+fileFormatVersion: 2
+guid: 7eb678129761b124bb417473b1e57c75
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -8323723476684784124
+    second: man/body/body
+  - first:
+      213: 3910599064527983159
+    second: man/head/face/left_eye
+  - first:
+      213: -8230856294905186806
+    second: man/head/face/right_eye
+  - first:
+      213: 1647015129264470359
+    second: man/head/face/left_eyebrow
+  - first:
+      213: 2475999976444628870
+    second: man/head/face/nose
+  - first:
+      213: 4027770680397205900
+    second: man/head/face/right_eyebrow
+  - first:
+      213: -3219953243388797130
+    second: man/head/head
+  - first:
+      213: 5440122093652383030
+    second: man/left_ hand/left_arm
+  - first:
+      213: -4128482144223518352
+    second: man/right_hand/right_arm
+  - first:
+      213: -3005220188906418558
+    second: man/left_ hand/left_hand
+  - first:
+      213: -7796787080507783537
+    second: man/left_ hand/left_shoulder
+  - first:
+      213: 3726181438633128133
+    second: man/left_leg/left_foot
+  - first:
+      213: -1571289629043997977
+    second: man/left_leg/left_hip
+  - first:
+      213: -5292982893744050203
+    second: man/left_leg/left_leg
+  - first:
+      213: 1209906928530930016
+    second: man/right_hand/right_hand
+  - first:
+      213: 8322868766700777521
+    second: man/right_hand/right_shoulder
+  - first:
+      213: -3177604406532941402
+    second: man/right_leg/right_foot
+  - first:
+      213: 182074672670173240
+    second: man/right_leg/right_hip
+  - first:
+      213: -6021075624959398382
+    second: man/right_leg/right_leg
+  - first:
+      213: -6029528980379550006
+    second: mouthes/mouth_O
+  - first:
+      213: -8001354292521850022
+    second: mouthes/mouth_angree
+  - first:
+      213: -5589036024225540075
+    second: mouthes/mouth_happy
+  - first:
+      213: -1565591169220875126
+    second: mouthes/mouth_sad
+  - first:
+      213: 8022973874832367863
+    second: mouthes/mouth_screem
+  - first:
+      213: -6926947394271290424
+    second: mouthes/mouth_smile
+  - first:
+      213: 5359631374458028639
+    second: mouthes/mouth_very_happy
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: -1
+    aniso: -1
+    mipBias: -0.5
+    wrapU: 1
+    wrapV: 1
+    wrapW: -1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 1
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: man/body/body
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 9
+        width: 159
+        height: 117
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 40ebf9359913c7c80800000000000000
+      internalID: -8323723476684784124
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: man/head/face/left_eye
+      rect:
+        serializedVersion: 2
+        x: 325
+        y: 123
+        width: 16
+        height: 9
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7325a24412d354630800000000000000
+      internalID: 3910599064527983159
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: man/head/face/right_eye
+      rect:
+        serializedVersion: 2
+        x: 325
+        y: 123
+        width: 16
+        height: 9
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a0673e80fcf16cd80800000000000000
+      internalID: -8230856294905186806
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: man/head/face/left_eyebrow
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 123
+        width: 21
+        height: 12
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 759b087a88f5bd610800000000000000
+      internalID: 1647015129264470359
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: man/head/face/nose
+      rect:
+        serializedVersion: 2
+        x: 648
+        y: 64
+        width: 17
+        height: 23
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 68f8bd33cd48c5220800000000000000
+      internalID: 2475999976444628870
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: man/head/face/right_eyebrow
+      rect:
+        serializedVersion: 2
+        x: 189
+        y: 123
+        width: 27
+        height: 12
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c811fc1081485e730800000000000000
+      internalID: 4027770680397205900
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: man/head/head
+      rect:
+        serializedVersion: 2
+        x: 421
+        y: 9
+        width: 137
+        height: 94
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 63f917ec59d6053d0800000000000000
+      internalID: -3219953243388797130
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: man/left_ hand/left_arm
+      rect:
+        serializedVersion: 2
+        x: 648
+        y: 9
+        width: 33
+        height: 47
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 63597ee98323f7b40800000000000000
+      internalID: 5440122093652383030
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: man/right_hand/right_arm
+      rect:
+        serializedVersion: 2
+        x: 648
+        y: 9
+        width: 33
+        height: 47
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 071a30c0d5fa4b6c0800000000000000
+      internalID: -4128482144223518352
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: man/left_ hand/left_hand
+      rect:
+        serializedVersion: 2
+        x: 607
+        y: 9
+        width: 33
+        height: 90
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 28e866819205b46d0800000000000000
+      internalID: -3005220188906418558
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: man/left_ hand/left_shoulder
+      rect:
+        serializedVersion: 2
+        x: 175
+        y: 9
+        width: 33
+        height: 106
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f868afc957f3cc390800000000000000
+      internalID: -7796787080507783537
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: man/left_leg/left_foot
+      rect:
+        serializedVersion: 2
+        x: 421
+        y: 111
+        width: 50
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5c0b16ab64e06b330800000000000000
+      internalID: 3726181438633128133
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: man/left_leg/left_hip
+      rect:
+        serializedVersion: 2
+        x: 216
+        y: 9
+        width: 33
+        height: 106
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7e2c39d4868a13ae0800000000000000
+      internalID: -1571289629043997977
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: man/left_leg/left_leg
+      rect:
+        serializedVersion: 2
+        x: 257
+        y: 9
+        width: 33
+        height: 106
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5efaa200a1c8b86b0800000000000000
+      internalID: -5292982893744050203
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: man/right_hand/right_hand
+      rect:
+        serializedVersion: 2
+        x: 566
+        y: 9
+        width: 33
+        height: 92
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 069be5ee0f37ac010800000000000000
+      internalID: 1209906928530930016
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: man/right_hand/right_shoulder
+      rect:
+        serializedVersion: 2
+        x: 298
+        y: 9
+        width: 33
+        height: 106
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 130b46ffb05c08370800000000000000
+      internalID: 8322868766700777521
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: man/right_leg/right_foot
+      rect:
+        serializedVersion: 2
+        x: 479
+        y: 111
+        width: 50
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6a953efb0a1e6e3d0800000000000000
+      internalID: -3177604406532941402
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: man/right_leg/right_hip
+      rect:
+        serializedVersion: 2
+        x: 339
+        y: 9
+        width: 33
+        height: 106
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 838e91b33fbd68200800000000000000
+      internalID: 182074672670173240
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: man/right_leg/right_leg
+      rect:
+        serializedVersion: 2
+        x: 380
+        y: 9
+        width: 33
+        height: 106
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 21e2880ce97d07ca0800000000000000
+      internalID: -6021075624959398382
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mouthes/mouth_O
+      rect:
+        serializedVersion: 2
+        x: 175
+        y: 123
+        width: 6
+        height: 13
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: acebd81965fc25ca0800000000000000
+      internalID: -6029528980379550006
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mouthes/mouth_angree
+      rect:
+        serializedVersion: 2
+        x: 537
+        y: 111
+        width: 41
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a5b2038f9aa75f090800000000000000
+      internalID: -8001354292521850022
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mouthes/mouth_happy
+      rect:
+        serializedVersion: 2
+        x: 253
+        y: 123
+        width: 28
+        height: 11
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 518dc231951cf62b0800000000000000
+      internalID: -5589036024225540075
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mouthes/mouth_sad
+      rect:
+        serializedVersion: 2
+        x: 289
+        y: 123
+        width: 28
+        height: 9
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a8ce91f5027e54ae0800000000000000
+      internalID: -1565591169220875126
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mouthes/mouth_screem
+      rect:
+        serializedVersion: 2
+        x: 635
+        y: 107
+        width: 42
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7f06f9b4b34575f60800000000000000
+      internalID: 8022973874832367863
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mouthes/mouth_smile
+      rect:
+        serializedVersion: 2
+        x: 349
+        y: 123
+        width: 23
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8cb54a2ab0a8edf90800000000000000
+      internalID: -6926947394271290424
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mouthes/mouth_very_happy
+      rect:
+        serializedVersion: 2
+        x: 586
+        y: 109
+        width: 41
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f520c99a65c316a40800000000000000
+      internalID: 5359631374458028639
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
