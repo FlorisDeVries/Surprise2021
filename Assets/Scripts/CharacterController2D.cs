@@ -15,13 +15,14 @@ namespace Assets.Scripts
         [SerializeField] private BoxCollider2D _groundCheck;
         [SerializeField] private BoxCollider2D _wallCheck;
 
-        private bool _isGrounded = false;
+        public bool IsGrounded { get { return _groundCheck.IsTouchingLayers(_groundLayers); } }
+
         private Rigidbody2D _rigidbody2D;
         private bool _facingRight = true;
         private Vector3 _velocity = Vector3.zero;
         private float _limitFallSpeed = 25f;
 
-        [SerializeField] private bool _isWall = false;
+        public bool IsOnWall { get { return !IsGrounded && _wallCheck.IsTouchingLayers(_groundLayers); } }
         private bool _isWallSliding = false;
 
         private bool _canMove = true; //If player can move
@@ -36,11 +37,10 @@ namespace Assets.Scripts
             if (!_canMove)
                 return;
 
-            CheckGrounded();
-            CheckWall();
+            var isGrounded = IsGrounded;
 
             // Regular movement
-            if (_isGrounded || _airControl)
+            if (isGrounded || _airControl)
             {
                 // Move the character by finding the target velocity
                 Vector3 targetVelocity = new Vector2(move * 10f, _rigidbody2D.velocity.y);
@@ -50,13 +50,13 @@ namespace Assets.Scripts
             // Jump
             if (jump)
             {
-                if (_isGrounded)
+                if (isGrounded)
                 {
                     // Add a vertical force to the player.
-                    _isGrounded = false;
+                    isGrounded = false;
                     _rigidbody2D.AddForce(new Vector2(0f, _jumpForce));
                 }
-                else if (!_isGrounded && _isWall)
+                else if (!isGrounded && IsOnWall)
                 {
                     _rigidbody2D.velocity = new Vector2(_rigidbody2D.velocity.x, 0);
                     _rigidbody2D.AddForce(new Vector2(_facingRight ? -4f * _jumpForce : 4f * _jumpForce, _jumpForce / 1.2f));
@@ -64,7 +64,7 @@ namespace Assets.Scripts
             }
 
             // Prevent getting stuck on walls
-            if (!_isGrounded && _isWall)
+            if (!isGrounded && IsOnWall)
             {
                 _rigidbody2D.velocity = new Vector2(0, _rigidbody2D.velocity.y);
             }
@@ -75,16 +75,6 @@ namespace Assets.Scripts
 
             // Fix orientation
             Flip(_rigidbody2D.velocity.x);
-        }
-
-        private void CheckGrounded()
-        {
-            _isGrounded = _groundCheck.IsTouchingLayers(_groundLayers);
-        }
-
-        private void CheckWall()
-        {
-            _isWall = _wallCheck.IsTouchingLayers(_groundLayers);
         }
 
         private void Flip(float move)

@@ -1,13 +1,21 @@
 using System;
 using Assets.Scripts.ScriptableObjects;
+using Spine.Unity;
 using UnityEngine;
 
 namespace Assets.Scripts.Player
 {
+    public enum PlayerState
+    {
+        Running,
+        Idle
+    }
+
     public class PlayerController : MonoBehaviour
     {
-        private Animator _animator;
         private CharacterController2D _controller;
+        [SerializeField] private SkeletonAnimation _characterCell = null;
+        private PlayerState _playerState = PlayerState.Idle;
 
         [Header("ScriptableObjects")]
         [SerializeField] private InputHandler _input;
@@ -27,6 +35,7 @@ namespace Assets.Scripts.Player
 
             _input.JumpEvent += OnJump;
             _input.LeftRightEvent += OnLeftRight;
+            _playerState = PlayerState.Idle;
         }
 
         private void OnDisable()
@@ -41,6 +50,25 @@ namespace Assets.Scripts.Player
 
             // Move our character
             _controller.Move(_horizontalMove * Time.fixedDeltaTime, _jump);
+
+            if (!_controller.IsOnWall && Math.Abs(_horizontalMove) > 0)
+            {
+                if(_playerState != PlayerState.Running)
+                {
+                    _playerState = PlayerState.Running;
+                    _characterCell.AnimationState.SetAnimation(0, "run", true);
+                }
+            }
+            else
+            {
+                if (_playerState != PlayerState.Idle)
+                {
+                    _playerState = PlayerState.Idle;
+                    _characterCell.AnimationState.SetAnimation(0, "idle", true);
+                }
+            }
+
+
             _jump = false;
             _dash = false;
         }
