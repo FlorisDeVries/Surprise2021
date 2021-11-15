@@ -246,6 +246,7 @@ MonoBehaviour:
   _groundCheck: {fileID: 354401891}
   _wallCheck: {fileID: 1114604215}
   _wallSlideCheck: {fileID: 1267581922}
+  _allowedWallSlideTime: 1
 --- !u!4 &208633799 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1900297031487138863, guid: c443b265a8a23ab46acef3f689146ec1, type: 3}

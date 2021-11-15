@@ -1,4 +1,7 @@
+using System;
 using System.Collections;
+using System.Threading;
+using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -21,6 +24,7 @@ namespace Assets.Scripts
         [SerializeField] private BoxCollider2D _groundCheck;
         [SerializeField] private BoxCollider2D _wallCheck;
         [SerializeField] private BoxCollider2D _wallSlideCheck;
+        [SerializeField] private float _allowedWallSlideTime = 4f;
 
         private Rigidbody2D _rigidbody2D;
         private bool _facingRight = true;
@@ -31,7 +35,10 @@ namespace Assets.Scripts
         public bool WallSlideCheck { get { return _wallSlideCheck.IsTouchingLayers(_groundLayers); } }
         public bool IsWallSliding { get; private set; } = false;
 
+        private bool _canWallSlide = true;
         private float _towardsWall;
+
+        private CancellationTokenSource tokenSource;
 
         private void Awake()
         {
@@ -45,6 +52,9 @@ namespace Assets.Scripts
             // Regular movement
             if (isGrounded || _airControl)
             {
+                if (isGrounded)
+                    _canWallSlide = true;
+
                 // Move the character by finding the target velocity
                 Vector3 targetVelocity = new Vector2(move * 10f, _rigidbody2D.velocity.y);
 
@@ -63,7 +73,7 @@ namespace Assets.Scripts
                 }
                 else if (IsWallSliding)
                 {
-                    IsWallSliding = false;
+                    CancelWallSlide();
                     _rigidbody2D.AddForce(new Vector2(0, _jumpForce));
                     _rigidbody2D.velocity = new Vector2(-_towardsWall, 0);
                 }
@@ -83,14 +93,23 @@ namespace Assets.Scripts
 
                 if (!WallSlideCheck)
                 {
-                    IsWallSliding = false;
+                    CancelWallSlide();
                 }
             }
             else if (!isGrounded && IsOnWall)
             {
-                _towardsWall = _rigidbody2D.velocity.x * _wallJumpForce;
-                Flip(-_rigidbody2D.velocity.x);
-                IsWallSliding = true;
+                if (_canWallSlide)
+                {
+                    tokenSource = new CancellationTokenSource();
+                    _towardsWall = _rigidbody2D.velocity.x * _wallJumpForce;
+                    Flip(-_rigidbody2D.velocity.x);
+                    IsWallSliding = true;
+                    Task.Run(() => WallSlideCooldown(tokenSource.Token), tokenSource.Token);
+                }
+                else
+                {
+                    _rigidbody2D.velocity = new Vector3(0, _rigidbody2D.velocity.y, 0);
+                }
             }
 
 
@@ -115,6 +134,21 @@ namespace Assets.Scripts
                 theScale.x *= -1;
                 transform.localScale = theScale;
             }
+        }
+
+        private void CancelWallSlide()
+        {
+            IsWallSliding = false;
+            tokenSource.Cancel();
+        }
+
+        private async Task WallSlideCooldown(CancellationToken token)
+        {
+            await Task.Delay(TimeSpan.FromSeconds(_allowedWallSlideTime));
+            if (token.IsCancellationRequested)
+                return;
+            CancelWallSlide();
+            _canWallSlide = false;
         }
     }
 }
