@@ -8,24 +8,30 @@ namespace Assets.Scripts
     {
         [SerializeField]
         private float _jumpForce = 400f;
-        [Range(0, .3f)]
-        [SerializeField] private float _movementSmoothing = .05f;
+
+        [SerializeField]
+        private float _wallJumpForce = 20f;
+        [Range(0, 1f)]
+        [SerializeField] private float _acceleration = .05f;
+        [Range(0, 1f)]
+        [SerializeField] private float _inAirAcceleration = .05f;
         [SerializeField] private bool _airControl = false;
         [SerializeField] private LayerMask _groundLayers;
+
         [SerializeField] private BoxCollider2D _groundCheck;
         [SerializeField] private BoxCollider2D _wallCheck;
-
-        public bool IsGrounded { get { return _groundCheck.IsTouchingLayers(_groundLayers); } }
+        [SerializeField] private BoxCollider2D _wallSlideCheck;
 
         private Rigidbody2D _rigidbody2D;
         private bool _facingRight = true;
-        private Vector3 _velocity = Vector3.zero;
         private float _limitFallSpeed = 25f;
 
+        public bool IsGrounded { get { return _groundCheck.IsTouchingLayers(_groundLayers); } }
         public bool IsOnWall { get { return !IsGrounded && _wallCheck.IsTouchingLayers(_groundLayers); } }
-        private bool _isWallSliding = false;
+        public bool WallSlideCheck { get { return _wallSlideCheck.IsTouchingLayers(_groundLayers); } }
+        public bool IsWallSliding { get; private set; } = false;
 
-        private bool _canMove = true; //If player can move
+        private float _towardsWall;
 
         private void Awake()
         {
@@ -34,9 +40,6 @@ namespace Assets.Scripts
 
         public void Move(float move, bool jump)
         {
-            if (!_canMove)
-                return;
-
             var isGrounded = IsGrounded;
 
             // Regular movement
@@ -44,7 +47,9 @@ namespace Assets.Scripts
             {
                 // Move the character by finding the target velocity
                 Vector3 targetVelocity = new Vector2(move * 10f, _rigidbody2D.velocity.y);
-                _rigidbody2D.velocity = Vector3.SmoothDamp(_rigidbody2D.velocity, targetVelocity, ref _velocity, _movementSmoothing);
+
+                var accel = isGrounded ? _acceleration : _inAirAcceleration;
+                _rigidbody2D.velocity = Vector3.Lerp(_rigidbody2D.velocity, targetVelocity, accel);
             }
 
             // Jump
@@ -56,18 +61,38 @@ namespace Assets.Scripts
                     isGrounded = false;
                     _rigidbody2D.AddForce(new Vector2(0f, _jumpForce));
                 }
-                else if (!isGrounded && IsOnWall)
+                else if (IsWallSliding)
                 {
-                    _rigidbody2D.velocity = new Vector2(_rigidbody2D.velocity.x, 0);
-                    _rigidbody2D.AddForce(new Vector2(_facingRight ? -4f * _jumpForce : 4f * _jumpForce, _jumpForce / 1.2f));
+                    IsWallSliding = false;
+                    _rigidbody2D.AddForce(new Vector2(0, _jumpForce));
+                    _rigidbody2D.velocity = new Vector2(-_towardsWall, 0);
                 }
             }
 
-            // Prevent getting stuck on walls
-            if (!isGrounded && IsOnWall)
+            if (IsWallSliding)
             {
-                _rigidbody2D.velocity = new Vector2(0, _rigidbody2D.velocity.y);
+
+                if (_rigidbody2D.velocity.x < .1f)
+                {
+                    _rigidbody2D.velocity = new Vector3(_towardsWall, 0, 0);
+                }
+                else
+                {
+                    _rigidbody2D.velocity = new Vector3(_rigidbody2D.velocity.x, 0, 0);
+                }
+
+                if (!WallSlideCheck)
+                {
+                    IsWallSliding = false;
+                }
             }
+            else if (!isGrounded && IsOnWall)
+            {
+                _towardsWall = _rigidbody2D.velocity.x * _wallJumpForce;
+                Flip(-_rigidbody2D.velocity.x);
+                IsWallSliding = true;
+            }
+
 
             // Limit fall speed
             if (_rigidbody2D.velocity.y < -_limitFallSpeed)
@@ -80,7 +105,7 @@ namespace Assets.Scripts
         private void Flip(float move)
         {
             // If the input is moving the player right and the player is facing left...
-            if ((move > 0 && !_facingRight && !_isWallSliding) || (move < 0 && _facingRight && !_isWallSliding))
+            if ((move > 0 && !_facingRight && !IsWallSliding) || (move < 0 && _facingRight && !IsWallSliding))
             {
                 // Switch the way the player is labelled as facing.
                 _facingRight = !_facingRight;

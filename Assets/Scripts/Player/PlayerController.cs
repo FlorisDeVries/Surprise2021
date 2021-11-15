@@ -51,7 +51,7 @@ namespace Assets.Scripts.Player
             // Move our character
             _controller.Move(_horizontalMove * Time.fixedDeltaTime, _jump);
 
-            if (!_controller.IsOnWall && Math.Abs(_horizontalMove) > 0)
+            if (!_controller.IsWallSliding && Math.Abs(_horizontalMove) > 0)
             {
                 if(_playerState != PlayerState.Running)
                 {
