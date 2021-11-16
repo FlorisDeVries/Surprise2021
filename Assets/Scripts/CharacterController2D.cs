@@ -26,6 +26,12 @@ namespace Assets.Scripts
         [SerializeField] private BoxCollider2D _wallSlideCheck;
         [SerializeField] private float _allowedWallSlideTime = 4f;
 
+        // Slope friction materials
+        [SerializeField]
+        private PhysicsMaterial2D _noFriction;
+        [SerializeField]
+        private PhysicsMaterial2D _fullFriction;
+
         private Rigidbody2D _rigidbody2D;
         private bool _facingRight = true;
         private float _limitFallSpeed = 25f;
@@ -40,6 +46,9 @@ namespace Assets.Scripts
 
         private CancellationTokenSource tokenSource;
 
+        // State bools
+        private bool _isGrounded = true;
+
         private void Awake()
         {
             _rigidbody2D = GetComponent<Rigidbody2D>();
@@ -47,38 +56,39 @@ namespace Assets.Scripts
 
         public void Move(float move, bool jump)
         {
-            var isGrounded = IsGrounded;
+            _isGrounded = IsGrounded;
 
             // Regular movement
-            if (isGrounded || _airControl)
+            if (_isGrounded || _airControl)
+                GroundMove(move);
+            WallSlideLogic();
+            JumpLogic(jump);
+
+            // Limit fall speed
+            if (_rigidbody2D.velocity.y < -_limitFallSpeed)
+                _rigidbody2D.velocity = new Vector2(_rigidbody2D.velocity.x, -_limitFallSpeed);
+
+            // Fix orientation
+            Flip(_rigidbody2D.velocity.x);
+        }
+
+        private void GroundMove(float move)
+        {
+            var acceleration = _inAirAcceleration;
+
+            if (_isGrounded)
             {
-                if (isGrounded)
-                    _canWallSlide = true;
-
-                // Move the character by finding the target velocity
-                Vector3 targetVelocity = new Vector2(move * 10f, _rigidbody2D.velocity.y);
-
-                var accel = isGrounded ? _acceleration : _inAirAcceleration;
-                _rigidbody2D.velocity = Vector3.Lerp(_rigidbody2D.velocity, targetVelocity, accel);
+                _canWallSlide = true;
+                acceleration = _acceleration;
             }
+            // Move the character by finding the target velocity
+            Vector3 targetVelocity = new Vector2(move * 10f, _rigidbody2D.velocity.y);
 
-            // Jump
-            if (jump)
-            {
-                if (isGrounded)
-                {
-                    // Add a vertical force to the player.
-                    isGrounded = false;
-                    _rigidbody2D.AddForce(new Vector2(0f, _jumpForce));
-                }
-                else if (IsWallSliding)
-                {
-                    CancelWallSlide();
-                    _rigidbody2D.AddForce(new Vector2(0, _jumpForce));
-                    _rigidbody2D.velocity = new Vector2(-_towardsWall, 0);
-                }
-            }
+            _rigidbody2D.velocity = Vector3.Lerp(_rigidbody2D.velocity, targetVelocity, acceleration);
+        }
 
+        private void WallSlideLogic()
+        {
             if (IsWallSliding)
             {
 
@@ -96,7 +106,7 @@ namespace Assets.Scripts
                     CancelWallSlide();
                 }
             }
-            else if (!isGrounded && IsOnWall)
+            else if (!_isGrounded && IsOnWall)
             {
                 if (_canWallSlide)
                 {
@@ -111,14 +121,27 @@ namespace Assets.Scripts
                     _rigidbody2D.velocity = new Vector3(0, _rigidbody2D.velocity.y, 0);
                 }
             }
+        }
 
+        private void JumpLogic(bool jump)
+        {
+            // Jump
+            if (!jump)
+                return;
 
-            // Limit fall speed
-            if (_rigidbody2D.velocity.y < -_limitFallSpeed)
-                _rigidbody2D.velocity = new Vector2(_rigidbody2D.velocity.x, -_limitFallSpeed);
+            if (_isGrounded)
+            {
+                // Add a vertical force to the player.
+                _isGrounded = false;
+                _rigidbody2D.AddForce(new Vector2(0f, _jumpForce));
+            }
+            else if (IsWallSliding)
+            {
+                CancelWallSlide();
+                _rigidbody2D.AddForce(new Vector2(0, _jumpForce));
+                _rigidbody2D.velocity = new Vector2(-_towardsWall, 0);
 
-            // Fix orientation
-            Flip(_rigidbody2D.velocity.x);
+            }
         }
 
         private void Flip(float move)
