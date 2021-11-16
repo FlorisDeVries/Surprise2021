@@ -9,32 +9,25 @@ namespace Assets.Scripts
 {
     public class CharacterController2D : MonoBehaviour
     {
-        [SerializeField]
-        private float _jumpForce = 400f;
-
-        [SerializeField]
-        private float _wallJumpForce = 20f;
         [Range(0, 1f)]
         [SerializeField] private float _acceleration = .05f;
         [Range(0, 1f)]
         [SerializeField] private float _inAirAcceleration = .05f;
+
+        [SerializeField] private float _jumpForce = 400f;
+        [SerializeField] private float _wallJumpForce = 20f;
         [SerializeField] private bool _airControl = false;
-        [SerializeField] private LayerMask _groundLayers;
 
         [SerializeField] private BoxCollider2D _groundCheck;
         [SerializeField] private BoxCollider2D _wallCheck;
         [SerializeField] private BoxCollider2D _wallSlideCheck;
-        [SerializeField] private float _allowedWallSlideTime = 4f;
+        [SerializeField] private LayerMask _groundLayers;
 
-        // Slope friction materials
-        [SerializeField]
-        private PhysicsMaterial2D _noFriction;
-        [SerializeField]
-        private PhysicsMaterial2D _fullFriction;
+        [SerializeField] private float _allowedWallSlideTime = 4f;
 
         private Rigidbody2D _rigidbody2D;
         private bool _facingRight = true;
-        private float _limitFallSpeed = 25f;
+        [SerializeField] private float _limitFallSpeed = 25f;
 
         public bool IsGrounded { get { return _groundCheck.IsTouchingLayers(_groundLayers); } }
         public bool IsOnWall { get { return !IsGrounded && _wallCheck.IsTouchingLayers(_groundLayers); } }
@@ -65,6 +58,8 @@ namespace Assets.Scripts
             JumpLogic(jump);
 
             // Limit fall speed
+            _rigidbody2D.gravityScale = _rigidbody2D.velocity.y < 0 ? 4 : 2;
+
             if (_rigidbody2D.velocity.y < -_limitFallSpeed)
                 _rigidbody2D.velocity = new Vector2(_rigidbody2D.velocity.x, -_limitFallSpeed);
 
@@ -91,7 +86,7 @@ namespace Assets.Scripts
         {
             if (IsWallSliding)
             {
-
+                // Stick player to wall
                 if (_rigidbody2D.velocity.x < .1f)
                 {
                     _rigidbody2D.velocity = new Vector3(_towardsWall, 0, 0);
@@ -138,9 +133,8 @@ namespace Assets.Scripts
             else if (IsWallSliding)
             {
                 CancelWallSlide();
-                _rigidbody2D.AddForce(new Vector2(0, _jumpForce));
                 _rigidbody2D.velocity = new Vector2(-_towardsWall, 0);
-
+                _rigidbody2D.AddForce(new Vector2(0, _jumpForce));
             }
         }
 
@@ -170,6 +164,7 @@ namespace Assets.Scripts
             await Task.Delay(TimeSpan.FromSeconds(_allowedWallSlideTime));
             if (token.IsCancellationRequested)
                 return;
+            Debug.Log("Cancelled Wall Slide");
             CancelWallSlide();
             _canWallSlide = false;
         }

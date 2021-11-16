@@ -44,7 +44,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.21840462, y: 1.0340842}
+  m_Offset: {x: 0.43602335, y: 2.0109844}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -55,7 +55,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.029323637, y: 1.9040382}
+  m_Size: {x: 0.07960057, y: 3.8645763}
   m_EdgeRadius: 0
 --- !u!1 &8715946033813465283
 GameObject:
@@ -101,7 +101,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.26, y: 1.0340842}
+  m_Offset: {x: -0.55664456, y: 2.0096552}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -112,7 +112,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.029323637, y: 1.9040382}
+  m_Size: {x: 0.08624053, y: 3.875198}
   m_EdgeRadius: 0
 --- !u!1 &8715946034510910786
 GameObject:
@@ -158,7 +158,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.017810553, y: 0.006809175}
+  m_Offset: {x: 0.0007314235, y: 0.07448894}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -169,7 +169,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.37659723, y: 0.19651574}
+  m_Size: {x: 0.67147005, y: 0.061156213}
   m_EdgeRadius: 0
 --- !u!1 &8715946034742136339
 GameObject:
@@ -222,7 +222,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.025127053, y: 1.0357583}
+  m_Offset: {x: -0.055330634, y: 2.0162878}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -233,7 +233,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.47401035, y: 2.0336432}
+  m_Size: {x: 0.96934974, y: 3.9947023}
   m_EdgeRadius: 0
 --- !u!50 &8715946034742136338
 Rigidbody2D:
@@ -250,7 +250,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 3
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
@@ -270,7 +270,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _characterCell: {fileID: 7109623234295825632}
   _input: {fileID: 11400000, guid: cefe3b01c1771994482688d2c946ac95, type: 2}
-  _speed: 25
+  _speed: 50
 --- !u!114 &8715946034742136342
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -283,20 +283,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a92d55d8229beaa4d9cc04958fc6dc80, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _jumpForce: 400
-  _wallJumpForce: 20
   _acceleration: 0.6
   _inAirAcceleration: 0.1
+  _jumpForce: 600
+  _wallJumpForce: 30
   _airControl: 1
-  _groundLayers:
-    serializedVersion: 2
-    m_Bits: 1
   _groundCheck: {fileID: 8715946034510910784}
   _wallCheck: {fileID: 8715946033681492372}
   _wallSlideCheck: {fileID: 8715946033813465281}
+  _groundLayers:
+    serializedVersion: 2
+    m_Bits: 1
   _allowedWallSlideTime: 1
-  _noFriction: {fileID: 0}
-  _fullFriction: {fileID: 0}
+  _limitFallSpeed: 25
 --- !u!1001 &8715946034411612362
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -322,11 +321,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1900297031487138863, guid: c443b265a8a23ab46acef3f689146ec1, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1900297031487138863, guid: c443b265a8a23ab46acef3f689146ec1, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1900297031487138863, guid: c443b265a8a23ab46acef3f689146ec1, type: 3}
       propertyPath: m_LocalPosition.x
