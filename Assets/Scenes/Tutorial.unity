@@ -201,6 +201,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _playerStats: {fileID: 11400000, guid: 9765bec8a9d328647a2a01ccbbc0198d, type: 2}
   _collider: {fileID: 164681251}
+  _renderer: {fileID: 1415094361}
+  _deadSprite: {fileID: 21300000, guid: 7f4d4c4f76bf13a44970bf63ba371012, type: 3}
+  isDyingStatus: 
 --- !u!1 &209761363
 GameObject:
   m_ObjectHideFlags: 0
