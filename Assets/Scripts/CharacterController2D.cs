@@ -33,6 +33,7 @@ namespace Assets.Scripts
         public bool IsOnWall { get { return !IsGrounded && _wallCheck.IsTouchingLayers(_groundLayers); } }
         public bool WallSlideCheck { get { return _wallSlideCheck.IsTouchingLayers(_groundLayers); } }
         public bool IsWallSliding { get; private set; } = false;
+        public Vector2 Velocity => _rigidbody2D.velocity;
 
         private bool _canWallSlide = true;
         private float _towardsWall;
@@ -87,9 +88,9 @@ namespace Assets.Scripts
             if (IsWallSliding)
             {
                 // Stick player to wall
-                if (_rigidbody2D.velocity.x < .1f)
+                if (_rigidbody2D.velocity.x < .2f)
                 {
-                    _rigidbody2D.velocity = new Vector3(_towardsWall, 0, 0);
+                    _rigidbody2D.velocity = new Vector3(_towardsWall * 100, 0, 0);
                 }
                 else
                 {
@@ -106,7 +107,7 @@ namespace Assets.Scripts
                 if (_canWallSlide)
                 {
                     tokenSource = new CancellationTokenSource();
-                    _towardsWall = _rigidbody2D.velocity.x * _wallJumpForce;
+                    _towardsWall = _facingRight ? 1 : -1  * _wallJumpForce;
                     Flip(-_rigidbody2D.velocity.x);
                     IsWallSliding = true;
                     Task.Run(() => WallSlideCooldown(tokenSource.Token), tokenSource.Token);
@@ -133,9 +134,19 @@ namespace Assets.Scripts
             else if (IsWallSliding)
             {
                 CancelWallSlide();
-                _rigidbody2D.velocity = new Vector2(-_towardsWall, 0);
-                _rigidbody2D.AddForce(new Vector2(0, _jumpForce));
+                JumpAway(-_towardsWall);
             }
+        }
+
+        public void JumpAway(float direction)
+        {
+            _rigidbody2D.velocity = new Vector2(direction, 0);
+            _rigidbody2D.AddForce(new Vector2(0, _jumpForce));
+        }
+
+        public void Bounce()
+        {
+            _rigidbody2D.AddForce(new Vector2(0, _jumpForce));
         }
 
         private void Flip(float move)
@@ -164,7 +175,6 @@ namespace Assets.Scripts
             await Task.Delay(TimeSpan.FromSeconds(_allowedWallSlideTime));
             if (token.IsCancellationRequested)
                 return;
-            Debug.Log("Cancelled Wall Slide");
             CancelWallSlide();
             _canWallSlide = false;
         }

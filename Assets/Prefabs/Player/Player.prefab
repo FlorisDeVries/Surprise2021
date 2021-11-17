@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8715946033681492372}
   m_Layer: 6
   m_Name: WallCheck
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -69,7 +69,7 @@ GameObject:
   - component: {fileID: 8715946033813465281}
   m_Layer: 6
   m_Name: WallSlideCheck
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -126,7 +126,7 @@ GameObject:
   - component: {fileID: 8715946034510910784}
   m_Layer: 6
   m_Name: GroundCheck
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -186,7 +186,7 @@ GameObject:
   - component: {fileID: 8715946034742136342}
   m_Layer: 6
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -269,8 +269,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _characterCell: {fileID: 7109623234295825632}
-  _input: {fileID: 11400000, guid: cefe3b01c1771994482688d2c946ac95, type: 2}
-  _speed: 50
+  _stats: {fileID: 11400000, guid: 9765bec8a9d328647a2a01ccbbc0198d, type: 2}
 --- !u!114 &8715946034742136342
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -314,6 +313,10 @@ PrefabInstance:
     - target: {fileID: 1900297031487138859, guid: c443b265a8a23ab46acef3f689146ec1, type: 3}
       propertyPath: m_Layer
       value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1900297031487138859, guid: c443b265a8a23ab46acef3f689146ec1, type: 3}
+      propertyPath: m_TagString
+      value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 1900297031487138863, guid: c443b265a8a23ab46acef3f689146ec1, type: 3}
       propertyPath: m_RootOrder

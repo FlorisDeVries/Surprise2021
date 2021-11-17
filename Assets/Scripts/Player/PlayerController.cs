@@ -1,4 +1,6 @@
 using System;
+using System.Threading;
+using System.Threading.Tasks;
 using Assets.Scripts.ScriptableObjects;
 using Spine.Unity;
 using UnityEngine;
@@ -17,43 +19,53 @@ namespace Assets.Scripts.Player
         [SerializeField] private SkeletonAnimation _characterCell = null;
         private PlayerState _playerState = PlayerState.Idle;
 
-        [Header("ScriptableObjects")]
-        [SerializeField] private InputHandler _input;
-
         [Header("Player Properties")]
-        [SerializeField] private float _speed = 350;
+        [SerializeField] private PlayerStats _stats;
 
         private Vector2 _moveDirection = Vector2.zero;
 
         private float _horizontalMove = 0f;
         private bool _jump = false;
-        private bool _dash = false;
+
+        private CancellationTokenSource _playerHitToken = new CancellationTokenSource();
+        private bool _hitEffect = false;
+        private CancellationTokenSource _enemyKilledToken = new CancellationTokenSource();
+        private bool _bounceEffect = false;
 
         private void OnEnable()
         {
             _controller = GetComponent<CharacterController2D>();
 
-            _input.JumpEvent += OnJump;
-            _input.LeftRightEvent += OnLeftRight;
+            _stats.InputHandler.JumpEvent += OnJump;
+            _stats.InputHandler.LeftRightEvent += OnLeftRight;
             _playerState = PlayerState.Idle;
+
+            _stats.KilledEnemyEvent += OnEnemyKilled;
+            _stats.PlayerHitEvent += OnPlayerHit;
         }
 
         private void OnDisable()
         {
-            _input.JumpEvent -= OnJump;
-            _input.LeftRightEvent -= OnLeftRight;
+            _stats.InputHandler.JumpEvent -= OnJump;
+            _stats.InputHandler.LeftRightEvent -= OnLeftRight;
+
+            _stats.KilledEnemyEvent -= OnEnemyKilled;
+            _stats.PlayerHitEvent -= OnPlayerHit;
         }
 
         private void FixedUpdate()
         {
-            _horizontalMove = _moveDirection.x * _speed;
+            if (_hitEffect)
+                return;
+
+            _horizontalMove = _moveDirection.x * _stats.MovementSpeed;
 
             // Move our character
             _controller.Move(_horizontalMove * Time.fixedDeltaTime, _jump);
 
             if (!_controller.IsWallSliding && Math.Abs(_horizontalMove) > 0)
             {
-                if(_playerState != PlayerState.Running)
+                if (_playerState != PlayerState.Running)
                 {
                     _playerState = PlayerState.Running;
                     _characterCell.AnimationState.SetAnimation(0, "run", true);
@@ -68,9 +80,7 @@ namespace Assets.Scripts.Player
                 }
             }
 
-
             _jump = false;
-            _dash = false;
         }
 
         private void OnLeftRight(float val)
@@ -81,6 +91,46 @@ namespace Assets.Scripts.Player
         private void OnJump(bool pressed)
         {
             _jump = pressed;
+        }
+
+        private void OnPlayerHit(float direction)
+        {
+            if (_hitEffect)
+                return;
+
+            _playerHitToken.Cancel();
+            _playerHitToken = new CancellationTokenSource();
+            _hitEffect = true;
+            Task.Run(() => ResetHitEffect(_playerHitToken.Token));
+            _controller.JumpAway(-direction * 25);
+        }
+
+        private async Task ResetHitEffect(CancellationToken token)
+        {
+            await Task.Delay(TimeSpan.FromSeconds(.1));
+            if (token.IsCancellationRequested)
+                return;
+            _hitEffect = false;
+        }
+
+        private void OnEnemyKilled()
+        {
+            if (_bounceEffect)
+                return;
+
+            _enemyKilledToken.Cancel();
+            _bounceEffect = true;
+            _enemyKilledToken = new CancellationTokenSource();
+            Task.Run(() => ResetKilledEffect(_enemyKilledToken.Token));
+            _controller.Bounce();
+        }
+
+        private async Task ResetKilledEffect(CancellationToken token)
+        {
+            await Task.Delay(TimeSpan.FromSeconds(.1));
+            if (token.IsCancellationRequested)
+                return;
+            _bounceEffect = false;
         }
     }
 }
