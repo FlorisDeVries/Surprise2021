@@ -107,7 +107,7 @@ namespace Assets.Scripts
                 if (_canWallSlide)
                 {
                     tokenSource = new CancellationTokenSource();
-                    _towardsWall = _facingRight ? 1 : -1  * _wallJumpForce;
+                    _towardsWall = (_facingRight ? 1 : -1) * _wallJumpForce;
                     Flip(-_rigidbody2D.velocity.x);
                     IsWallSliding = true;
                     Task.Run(() => WallSlideCooldown(tokenSource.Token), tokenSource.Token);
