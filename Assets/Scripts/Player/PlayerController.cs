@@ -55,7 +55,7 @@ namespace Assets.Scripts.Player
 
         private void FixedUpdate()
         {
-            if (_hitEffect)
+            if (_hitEffect || !_stats.IsAlive)
                 return;
 
             _horizontalMove = _moveDirection.x * _stats.MovementSpeed;
@@ -102,7 +102,7 @@ namespace Assets.Scripts.Player
             _playerHitToken = new CancellationTokenSource();
             _hitEffect = true;
             Task.Run(() => ResetHitEffect(_playerHitToken.Token));
-            _controller.JumpAway(-direction * 25);
+            _controller.JumpAway(-direction * (_stats.IsAlive ? 25 : 5));
         }
 
         private async Task ResetHitEffect(CancellationToken token)

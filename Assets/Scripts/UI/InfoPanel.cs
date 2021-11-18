@@ -7,6 +7,7 @@ public class InfoPanel : MonoBehaviour
     [SerializeField] private Canvas _canvas;
     [SerializeField] private TMPro.TMP_Text _textMeshPro;
     [SerializeField] private string _infoText;
+    [SerializeField] private EnableSection _enables;
 
     private void OnEnable()
     {
@@ -16,6 +17,9 @@ public class InfoPanel : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
+        if (_enables != null)
+            _enables.Enable();
+
         _canvas.gameObject.SetActive(true);
     }
 

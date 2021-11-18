@@ -13,6 +13,7 @@ public class PlayerStats : BaseStats
 
     // In Game Stats
     public float CurrentHealth { get; private set; } = 0;
+    public bool IsAlive => CurrentHealth > 0;
 
     public event UnityAction<float> PlayerHitEvent = delegate { };
     public event UnityAction KilledEnemyEvent = delegate { };
@@ -30,10 +31,14 @@ public class PlayerStats : BaseStats
 
     public void TakeHit(float direction)
     {
+        if (CurrentHealth <= 0)
+            return;
+
         CurrentHealth--;
         if (CurrentHealth <= 0)
         {
             PlayerDeathEvent.Invoke();
+            PlayerHitEvent.Invoke(direction);
         }
         else
         {

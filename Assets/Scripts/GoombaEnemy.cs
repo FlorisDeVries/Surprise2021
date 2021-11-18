@@ -15,30 +15,37 @@ public class GoombaEnemy : MonoBehaviour
     [SerializeField] private SpriteRenderer _renderer;
     [SerializeField] private Sprite _deadSprite;
 
+    [Header("Pathfinding")]
+    [SerializeField] private List<Transform> _targets;
+    [SerializeField] private float _speed = 10;
+    private int _targetIndex = 0;
+
     public string isDyingStatus = "";
     private Vector3 _tagetScale = Vector3.one;
     private bool _handlingCollision = false;
     private bool _dead = false;
+    private bool _hitCooldown = false;
 
     private CancellationTokenSource deathAnimToken = new CancellationTokenSource();
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag != "Player" || _handlingCollision || _dead)
+        if (_hitCooldown || collision.gameObject.tag != "Player" || _handlingCollision || _dead)
             return;
 
+        _hitCooldown = true;
         _handlingCollision = true;
 
         var contact = collision.GetContact(0);
         if (Mathf.Abs(contact.normal.y) > .5f)
         {
             // Die
-            _dead = true;
             _collider.enabled = false;
+            _dead = true;
             _playerStats.KilledEnemy();
             _renderer.sprite = _deadSprite;
 
-            // TODO: Play Death animation
+            // Dying
             isDyingStatus = "Dying";
             deathAnimToken = new CancellationTokenSource();
             Task.Run(async () => await DeathAnim(deathAnimToken.Token));
@@ -46,6 +53,7 @@ public class GoombaEnemy : MonoBehaviour
         else
         {
             _playerStats.TakeHit(contact.normal.x / Mathf.Abs(contact.normal.x));
+            Task.Run(async () => await HitCooldown());
         }
 
         _handlingCollision = false;
@@ -54,7 +62,20 @@ public class GoombaEnemy : MonoBehaviour
     private void Update()
     {
         if (!_dead)
+        {
+            transform.position = Vector3.MoveTowards(transform.position, _targets[_targetIndex].position, _speed * Time.deltaTime);
+
+            if (Vector3.Distance(transform.position, _targets[_targetIndex].position) < .1f)
+            {
+                _targetIndex++;
+                if (_targetIndex >= _targets.Count)
+                {
+                    _targetIndex = 0;
+                }
+            }
+
             return;
+        }
 
         transform.localScale = _tagetScale;
         if (_tagetScale == Vector3.zero)
@@ -74,5 +95,11 @@ public class GoombaEnemy : MonoBehaviour
         }
 
         _tagetScale = Vector3.zero;
+    }
+
+    private async Task HitCooldown()
+    {
+        await Task.Delay(TimeSpan.FromSeconds(.1));
+        _hitCooldown = false;
     }
 }
