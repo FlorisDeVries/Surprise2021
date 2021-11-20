@@ -2,28 +2,31 @@ using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public enum Scene
+namespace ScriptableObjects
 {
-    MainMenu,
-    Tutorial,
-    Level1
-}
-
-[CreateAssetMenu(fileName = "SceneManager", menuName = "Managers/SceneManager")]
-public class SceneManagerSO : ScriptableObject
-{
-    public void ActivateScene(Scene scene)
+    public enum Scene
     {
-        SceneManager.LoadScene(scene.ToString());
+        MainMenu,
+        Tutorial,
+        Level1
     }
 
-    public void ActivateScene(string scene)
+    [CreateAssetMenu(fileName = "SceneManager", menuName = "Managers/SceneManager")]
+    public class SceneManagerSO : ScriptableObject
     {
-        SceneManager.LoadScene(scene);
-    }
+        public void ActivateScene(Scene scene)
+        {
+            SceneManager.LoadScene(scene.ToString());
+        }
 
-    internal void ReloadScene()
-    {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        public void ActivateScene(string scene)
+        {
+            SceneManager.LoadScene(scene);
+        }
+
+        internal void ReloadScene()
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        }
     }
 }

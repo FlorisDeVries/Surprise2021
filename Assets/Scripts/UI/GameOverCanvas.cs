@@ -1,27 +1,29 @@
-using System.Collections;
-using System.Collections.Generic;
+using ScriptableObjects.Stats;
 using UnityEngine;
 
-public class GameOverCanvas : MonoBehaviour
+namespace UI
 {
-    [Header("Player Properties")]
-    [SerializeField] private PlayerStats _stats;
-    [SerializeField] private CanvasGroup _canvasGroup;
-
-    private void OnEnable()
+    public class GameOverCanvas : MonoBehaviour
     {
-        _canvasGroup.alpha = 0;
-        _stats.PlayerDeathEvent += OnPlayerDeath;
-    }
+        [Header("Player Properties")]
+        [SerializeField] private PlayerStats _stats;
+        [SerializeField] private CanvasGroup _canvasGroup;
 
-    private void OnDisable()
-    {
-        _canvasGroup.alpha = 1;
-        _stats.PlayerDeathEvent -= OnPlayerDeath;
-    }
+        private void OnEnable()
+        {
+            _canvasGroup.alpha = 0;
+            _stats.PlayerDeathEvent += OnPlayerDeath;
+        }
 
-    private void OnPlayerDeath()
-    {
-        _canvasGroup.alpha = 1;
+        private void OnDisable()
+        {
+            _canvasGroup.alpha = 1;
+            _stats.PlayerDeathEvent -= OnPlayerDeath;
+        }
+
+        private void OnPlayerDeath()
+        {
+            _canvasGroup.alpha = 1;
+        }
     }
 }

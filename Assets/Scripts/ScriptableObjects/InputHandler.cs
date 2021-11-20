@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
-namespace Assets.Scripts.ScriptableObjects
+namespace ScriptableObjects
 {
     [CreateAssetMenu(fileName = "InputHandler", menuName = "Gameplay/Input Handler")]
     public class InputHandler : ScriptableObject, GameplayActions.IInGameActions

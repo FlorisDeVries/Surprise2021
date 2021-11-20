@@ -1,30 +1,31 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class InfoPanel : MonoBehaviour
+namespace UI
 {
-    [SerializeField] private Canvas _canvas;
-    [SerializeField] private TMPro.TMP_Text _textMeshPro;
-    [SerializeField] private string _infoText;
-    [SerializeField] private EnableSection _enables;
-
-    private void OnEnable()
+    public class InfoPanel : MonoBehaviour
     {
-        _canvas.gameObject.SetActive(false);
-        _textMeshPro.text = _infoText;
-    }
+        [SerializeField] private Canvas _canvas;
+        [SerializeField] private TMPro.TMP_Text _textMeshPro;
+        [SerializeField] private string _infoText;
+        [SerializeField] private EnableSection _enables;
 
-    private void OnTriggerEnter2D(Collider2D other)
-    {
-        if (_enables != null)
-            _enables.Enable();
+        private void OnEnable()
+        {
+            _canvas.gameObject.SetActive(false);
+            _textMeshPro.text = _infoText;
+        }
 
-        _canvas.gameObject.SetActive(true);
-    }
+        private void OnTriggerEnter2D(Collider2D other)
+        {
+            if (_enables != null)
+                _enables.Enable();
 
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        _canvas.gameObject.SetActive(false);
+            _canvas.gameObject.SetActive(true);
+        }
+
+        private void OnTriggerExit2D(Collider2D collision)
+        {
+            _canvas.gameObject.SetActive(false);
+        }
     }
 }

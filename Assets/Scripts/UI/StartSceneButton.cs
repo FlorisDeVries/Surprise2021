@@ -1,24 +1,26 @@
-using System.Collections;
-using System.Collections.Generic;
+using ScriptableObjects;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class StartSceneButton : MonoBehaviour
+namespace UI
 {
-    [SerializeField] private SceneManagerSO sceneManager;
-    [SerializeField] private bool _currentScene = false;
-    [SerializeField] private Scene _sceneToLoad = Scene.MainMenu;
-
-    private void OnEnable()
+    public class StartSceneButton : MonoBehaviour
     {
-        GetComponent<Button>().onClick.AddListener(OnClick);
-    }
+        [SerializeField] private SceneManagerSO sceneManager;
+        [SerializeField] private bool _currentScene = false;
+        [SerializeField] private Scene _sceneToLoad = Scene.MainMenu;
 
-    private void OnClick()
-    {
-        if (_currentScene)
-            sceneManager.ReloadScene();
-        else
-            sceneManager.ActivateScene(_sceneToLoad);
+        private void OnEnable()
+        {
+            GetComponent<Button>().onClick.AddListener(OnClick);
+        }
+
+        private void OnClick()
+        {
+            if (_currentScene)
+                sceneManager.ReloadScene();
+            else
+                sceneManager.ActivateScene(_sceneToLoad);
+        }
     }
 }
