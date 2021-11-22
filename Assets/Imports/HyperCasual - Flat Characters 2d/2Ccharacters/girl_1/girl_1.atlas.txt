@@ -27,37 +27,37 @@ girl/body/dress
   index: -1
 girl/head/face/left_eye
   rotate: true
-  xy: 97, 26
-  size: 9, 16
-  orig: 9, 16
+  xy: 0, 0
+  size: 0, 0
+  orig: 0, 0
   offset: 0, 0
   index: -1
 girl/head/face/right_eye
   rotate: true
-  xy: 97, 26
-  size: 9, 16
-  orig: 9, 16
+  xy: 0, 0
+  size: 0, 0
+  orig: 0, 0
   offset: 0, 0
   index: -1
 girl/head/face/left_eyebrow
   rotate: false
-  xy: 121, 324
-  size: 21, 12
-  orig: 21, 12
+  xy: 0, 0
+  size: 0, 0
+  orig: 0, 0
   offset: 0, 0
   index: -1
 girl/head/face/nose
   rotate: true
-  xy: 122, 528
-  size: 21, 28
-  orig: 21, 28
+  xy: 0, 0
+  size: 0, 0
+  orig: 0, 0
   offset: 0, 0
   index: -1
 girl/head/face/right_eyebrow
   rotate: false
-  xy: 125, 673
-  size: 27, 12
-  orig: 27, 12
+  xy: 0, 0
+  size: 0, 0
+  orig: 0, 0
   offset: 0, 0
   index: -1
 girl/head/head/hair_bottom
@@ -167,50 +167,50 @@ girl/right_leg/right_leg
   index: -1
 mouthes/mouth_O
   rotate: false
-  xy: 146, 762
-  size: 6, 13
-  orig: 6, 13
+  xy: 0, 0
+  size: 0, 0
+  orig: 0, 0
   offset: 0, 0
   index: -1
 mouthes/mouth_angree
   rotate: true
-  xy: 122, 443
-  size: 41, 25
-  orig: 41, 25
+  xy: 0, 0
+  size: 0, 0
+  orig: 0, 0
   offset: 0, 0
   index: -1
 mouthes/mouth_happy
   rotate: false
-  xy: 122, 509
-  size: 28, 11
-  orig: 28, 11
+  xy: 0, 0
+  size: 0, 0
+  orig: 0, 0
   offset: 0, 0
   index: -1
 mouthes/mouth_sad
   rotate: false
-  xy: 122, 492
-  size: 28, 9
-  orig: 28, 9
+  xy: 0, 0
+  size: 0, 0
+  orig: 0, 0
   offset: 0, 0
   index: -1
 mouthes/mouth_screem
   rotate: true
-  xy: 122, 344
-  size: 42, 24
-  orig: 42, 24
+  xy: 0, 0
+  size: 0, 0
+  orig: 0, 0
   offset: 0, 0
   index: -1
 mouthes/mouth_smile
   rotate: true
-  xy: 146, 783
-  size: 23, 6
-  orig: 23, 6
+  xy: 0, 0
+  size: 0, 0
+  orig: 0, 0
   offset: 0, 0
   index: -1
 mouthes/mouth_very_happy
   rotate: true
-  xy: 122, 394
-  size: 41, 25
-  orig: 41, 25
+  xy: 0, 0
+  size: 0, 0
+  orig: 0, 0
   offset: 0, 0
   index: -1

@@ -7,10 +7,8 @@ namespace Characters
 {
     public class CharacterController2D : MonoBehaviour
     {
-        [Range(0, 1f)]
-        [SerializeField] private float _acceleration = .05f;
-        [Range(0, 1f)]
-        [SerializeField] private float _inAirAcceleration = .05f;
+        [Range(0, 1f)] [SerializeField] private float _acceleration = .05f;
+        [Range(0, 1f)] [SerializeField] private float _inAirAcceleration = .05f;
 
         [SerializeField] private float _jumpForce = 400f;
         [SerializeField] private float _wallJumpForce = 20f;
@@ -30,7 +28,7 @@ namespace Characters
         private bool IsGrounded => _groundCheck.IsTouchingLayers(_groundLayers);
         private bool IsOnWall => !IsGrounded && _wallCheck.IsTouchingLayers(_groundLayers);
         private bool WallSlideCheck => _wallSlideCheck.IsTouchingLayers(_groundLayers);
-        
+
         public bool IsWallSliding { get; private set; } = false;
         public Vector2 Velocity => _rigidbody2D.velocity;
 
@@ -57,14 +55,18 @@ namespace Characters
             WallSlideLogic();
             JumpLogic(jump);
 
-            // Limit fall speed
+            // Fall faster than rising
             _rigidbody2D.gravityScale = _rigidbody2D.velocity.y < 0 ? 4 : 2;
 
-            if (_rigidbody2D.velocity.y < -_limitFallSpeed)
-                _rigidbody2D.velocity = new Vector2(_rigidbody2D.velocity.x, -_limitFallSpeed);
+            // Clamp movement in all directions
+            _rigidbody2D.velocity = new Vector2(
+                Mathf.Clamp(_rigidbody2D.velocity.x, -_limitFallSpeed, _limitFallSpeed),
+                Mathf.Clamp(_rigidbody2D.velocity.y, -_limitFallSpeed, _limitFallSpeed)
+            );
 
             // Fix orientation
-            Flip(_rigidbody2D.velocity.x);
+            if (move != 0)
+                Flip(_rigidbody2D.velocity.x);
         }
 
         private void GroundMove(float move)
@@ -76,6 +78,7 @@ namespace Characters
                 _canWallSlide = true;
                 acceleration = _acceleration;
             }
+
             // Move the character by finding the target velocity
             Vector3 targetVelocity = new Vector2(move * 10f, _rigidbody2D.velocity.y);
 
@@ -87,7 +90,9 @@ namespace Characters
             if (IsWallSliding)
             {
                 // Stick player to wall
-                _rigidbody2D.velocity = _rigidbody2D.velocity.x < .2f ? new Vector3(_towardsWall * 100, 0, 0) : new Vector3(_rigidbody2D.velocity.x, 0, 0);
+                _rigidbody2D.velocity = _rigidbody2D.velocity.x < .2f
+                    ? new Vector3(_towardsWall * 100, 0, 0)
+                    : new Vector3(_rigidbody2D.velocity.x, 0, 0);
 
                 if (!WallSlideCheck)
                 {

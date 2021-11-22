@@ -13,10 +13,14 @@ namespace ScriptableObjects.Stats
         // In Game Stats
         public float CurrentHealth { get; private set; } = 0;
         public bool IsAlive => CurrentHealth > 0;
+        
+        private int _rippleScore = 0;
 
         public event UnityAction<float> PlayerHitEvent = delegate { };
         public event UnityAction KilledEnemyEvent = delegate { };
         public event UnityAction PlayerDeathEvent = delegate { };
+        
+        public event UnityAction<int> RippleCollectedEvent = delegate { };
 
         private void OnEnable()
         {
@@ -26,6 +30,7 @@ namespace ScriptableObjects.Stats
         private void Reset()
         {
             CurrentHealth = maxHealth;
+            _rippleScore = 0;
         }
 
         public void TakeHit(float direction)
@@ -48,6 +53,12 @@ namespace ScriptableObjects.Stats
         public void KilledEnemy()
         {
             KilledEnemyEvent.Invoke();
+        }
+
+        public void CollectRipple()
+        {
+            _rippleScore++;
+            RippleCollectedEvent.Invoke(_rippleScore);
         }
     }
 }

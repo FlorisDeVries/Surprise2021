@@ -10,9 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 8715946033681492373}
   - component: {fileID: 8715946033681492372}
-  m_Layer: 6
+  m_Layer: 2
   m_Name: WallCheck
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -41,7 +41,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0.43602335, y: 2.0109844}
@@ -67,9 +67,9 @@ GameObject:
   m_Component:
   - component: {fileID: 8715946033813465282}
   - component: {fileID: 8715946033813465281}
-  m_Layer: 6
+  m_Layer: 2
   m_Name: WallSlideCheck
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -98,7 +98,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: -0.55664456, y: 2.0096552}
@@ -124,9 +124,9 @@ GameObject:
   m_Component:
   - component: {fileID: 8715946034510910785}
   - component: {fileID: 8715946034510910784}
-  m_Layer: 6
+  m_Layer: 2
   m_Name: GroundCheck
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -184,6 +184,7 @@ GameObject:
   - component: {fileID: 8715946034742136338}
   - component: {fileID: 8715946034742136343}
   - component: {fileID: 8715946034742136342}
+  - component: {fileID: 1838400810}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -295,6 +296,20 @@ MonoBehaviour:
     m_Bits: 1
   _allowedWallSlideTime: 1
   _limitFallSpeed: 25
+--- !u!114 &1838400810
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8715946034742136339}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 969c2f41a021a7340a8cb3c85e39aa93, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _stats: {fileID: 11400000, guid: 9765bec8a9d328647a2a01ccbbc0198d, type: 2}
+  _characterCell: {fileID: 7109623234295825632}
 --- !u!1001 &8715946034411612362
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -316,7 +331,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1900297031487138859, guid: c443b265a8a23ab46acef3f689146ec1, type: 3}
       propertyPath: m_TagString
-      value: Player
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 1900297031487138863, guid: c443b265a8a23ab46acef3f689146ec1, type: 3}
       propertyPath: m_RootOrder
