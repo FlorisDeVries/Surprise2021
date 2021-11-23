@@ -9,6 +9,7 @@ namespace UI
         [SerializeField] private PlayerStats _stats;
         [SerializeField] private CanvasGroup _canvasGroup;
 
+        // TODO: Let GameManager manage these canvases, instead of the player
         private void OnEnable()
         {
             _canvasGroup.alpha = 0;

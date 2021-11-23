@@ -1,13 +1,20 @@
 using System;
+using Cinemachine;
+using ScriptableObjects;
 using ScriptableObjects.Stats;
 using UnityEngine;
 
 namespace Pickups
 {
-    public class RipplePickup : MonoBehaviour
+    public class RipplePickup : ACollectable
     {
         [Header("Player Properties")] [SerializeField]
         private PlayerStats _stats;
+
+        private void OnEnable()
+        {
+            type = ObjectiveType.Ripple;
+        }
 
         private void OnTriggerEnter2D(Collider2D other)
         {
@@ -15,6 +22,8 @@ namespace Pickups
             {
                 return;
             }
+
+            RegisterCollect();
             _stats.CollectRipple();
             Destroy(this.gameObject);
         }
