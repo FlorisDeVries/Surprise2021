@@ -42,6 +42,7 @@ namespace ScriptableObjects.Stats
             if (CurrentHealth <= 0)
             {
                 PlayerDeathEvent.Invoke();
+                GameManager.Instance.ChangeState(GameState.GameOver);
                 PlayerHitEvent.Invoke(direction);
             }
             else

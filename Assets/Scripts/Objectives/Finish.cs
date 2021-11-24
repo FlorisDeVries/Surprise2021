@@ -15,8 +15,8 @@ namespace Objectives
 
             if (!_objectiveManager.IsComplete())
                 return;
-            
-            // TODO: Notify GameManager that the level is complete
+
+            GameManager.Instance.ChangeState(GameState.Victory);
         }
     }
 }

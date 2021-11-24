@@ -20,11 +20,6 @@ namespace ScriptableObjects
 
         private Dictionary<ObjectiveType, AObjective> _objectivesDict;
 
-        private void OnEnable()
-        {
-            StartLevel();
-        }
-
         public void StartLevel()
         {
             _objectivesDict = new Dictionary<ObjectiveType, AObjective>();
@@ -47,7 +42,7 @@ namespace ScriptableObjects
 
         public bool IsComplete()
         {
-            return _objectives.All(x => IsComplete());
+            return _objectives.All(x => x.IsComplete());
         }
     }
 }

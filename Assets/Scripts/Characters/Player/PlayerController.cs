@@ -1,11 +1,12 @@
 using System;
 using System.Threading;
 using System.Threading.Tasks;
+using ScriptableObjects;
 using ScriptableObjects.Stats;
 using Spine.Unity;
 using UnityEngine;
 
-namespace Player
+namespace Characters.Player
 {
     public enum PlayerState
     {
@@ -15,7 +16,7 @@ namespace Player
 
     public class PlayerController : MonoBehaviour
     {
-        private Characters.CharacterController2D _controller;
+        private CharacterController2D _controller;
         [SerializeField] private SkeletonAnimation _characterCell = null;
         private PlayerState _playerState = PlayerState.Idle;
 
@@ -34,7 +35,7 @@ namespace Player
 
         private void OnEnable()
         {
-            _controller = GetComponent<Characters.CharacterController2D>();
+            _controller = GetComponent<CharacterController2D>();
 
             _stats.InputHandler.JumpEvent += OnJump;
             _stats.InputHandler.LeftRightEvent += OnLeftRight;
@@ -55,7 +56,7 @@ namespace Player
 
         private void FixedUpdate()
         {
-            if (_hitEffect || !_stats.IsAlive)
+            if (_hitEffect || GameManager.Instance.State != GameState.Playing)
                 return;
 
             _horizontalMove = _moveDirection.x * _stats.MovementSpeed;
@@ -63,7 +64,7 @@ namespace Player
             // Move our character
             _controller.Move(_horizontalMove * Time.fixedDeltaTime, _jump);
 
-            if (!_controller.IsWallSliding && Math.Abs(_horizontalMove) > 0)
+            if (!_controller.IsWallSliding && Math.Abs(_controller.Velocity.x) > 0.2f)
             {
                 if (_playerState != PlayerState.Running)
                 {
@@ -107,7 +108,7 @@ namespace Player
 
         private async Task ResetHitEffect(CancellationToken token)
         {
-            await Task.Delay(TimeSpan.FromSeconds(.1));
+            await Task.Delay(TimeSpan.FromSeconds(.1), token);
             if (token.IsCancellationRequested)
                 return;
             _hitEffect = false;
@@ -127,7 +128,7 @@ namespace Player
 
         private async Task ResetKilledEffect(CancellationToken token)
         {
-            await Task.Delay(TimeSpan.FromSeconds(.1));
+            await Task.Delay(TimeSpan.FromSeconds(.1), token);
             if (token.IsCancellationRequested)
                 return;
             _bounceEffect = false;
