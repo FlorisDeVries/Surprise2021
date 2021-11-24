@@ -20,8 +20,8 @@ namespace Characters.Player
         [SerializeField] private SkeletonAnimation _characterCell = null;
         private PlayerState _playerState = PlayerState.Idle;
 
-        [Header("Player Properties")]
-        [SerializeField] private PlayerStats _stats;
+        [Header("Player Properties")] [SerializeField]
+        private PlayerStats _stats;
 
         private Vector2 _moveDirection = Vector2.zero;
 
@@ -56,6 +56,8 @@ namespace Characters.Player
 
         private void FixedUpdate()
         {
+            Animate();
+            
             if (_hitEffect || GameManager.Instance.State != GameState.Playing)
                 return;
 
@@ -64,24 +66,24 @@ namespace Characters.Player
             // Move our character
             _controller.Move(_horizontalMove * Time.fixedDeltaTime, _jump);
 
-            if (!_controller.IsWallSliding && Math.Abs(_controller.Velocity.x) > 0.2f)
+
+            _jump = false;
+        }
+
+        private void Animate()
+        {
+            if (_hitEffect || _controller.IsWallSliding || Math.Abs(_controller.Velocity.x) < 0.2f)
             {
-                if (_playerState != PlayerState.Running)
-                {
-                    _playerState = PlayerState.Running;
-                    _characterCell.AnimationState.SetAnimation(0, "run", true);
-                }
+                if (_playerState == PlayerState.Idle) return;
+                _playerState = PlayerState.Idle;
+                _characterCell.AnimationState.SetAnimation(0, "idle", true);
             }
             else
             {
-                if (_playerState != PlayerState.Idle)
-                {
-                    _playerState = PlayerState.Idle;
-                    _characterCell.AnimationState.SetAnimation(0, "idle", true);
-                }
+                if (_playerState == PlayerState.Running) return;
+                _playerState = PlayerState.Running;
+                _characterCell.AnimationState.SetAnimation(0, "run", true);
             }
-
-            _jump = false;
         }
 
         private void OnLeftRight(float val)
@@ -108,7 +110,7 @@ namespace Characters.Player
 
         private async Task ResetHitEffect(CancellationToken token)
         {
-            await Task.Delay(TimeSpan.FromSeconds(.1), token);
+            await Task.Delay(TimeSpan.FromSeconds(.25), token);
             if (token.IsCancellationRequested)
                 return;
             _hitEffect = false;
