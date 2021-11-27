@@ -44,4 +44,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _player: {fileID: 11400000, guid: 9765bec8a9d328647a2a01ccbbc0198d, type: 2}
+  _input: {fileID: 11400000, guid: cefe3b01c1771994482688d2c946ac95, type: 2}
   _objectiveManager: {fileID: 11400000, guid: 4f92f0cfda1876f409c8bb9dc005377b, type: 2}

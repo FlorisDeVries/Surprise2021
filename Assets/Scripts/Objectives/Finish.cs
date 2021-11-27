@@ -1,4 +1,5 @@
 using System;
+using Game;
 using ScriptableObjects;
 using UnityEngine;
 
@@ -6,17 +7,15 @@ namespace Objectives
 {
     public class Finish : MonoBehaviour
     {
-        [SerializeField] private ObjectiveManagerSO _objectiveManager;
-
         private void OnTriggerEnter2D(Collider2D other)
         {
             if (other.CompareTag("Player"))
                 return;
 
-            if (!_objectiveManager.IsComplete())
+            if (!GameManager.Instance.ObjectiveManager.IsComplete())
                 return;
 
-            GameManager.Instance.ChangeState(GameState.Victory);
+            GameManager.Instance.SetGameState(GameState.Victory);
         }
     }
 }

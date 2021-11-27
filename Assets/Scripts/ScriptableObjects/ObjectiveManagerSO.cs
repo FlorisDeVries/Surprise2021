@@ -10,7 +10,9 @@ namespace ScriptableObjects
     public enum ObjectiveType
     {
         None,
-        Ripple
+        Ripple,
+        Nanouk,
+        Ring
     }
 
     [CreateAssetMenu(fileName = "ObjectiveManager", menuName = "Managers/ObjectiveManager")]

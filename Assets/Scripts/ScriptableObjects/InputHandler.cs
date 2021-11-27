@@ -8,8 +8,8 @@ namespace ScriptableObjects
     public class InputHandler : ScriptableObject, GameplayActions.IInGameActions
     {
         public event UnityAction<float> LeftRightEvent = delegate { };
-
         public event UnityAction<bool> JumpEvent = delegate { };
+        public event UnityAction PauseEvent = delegate { };
 
         private GameplayActions _gameInput;
 
@@ -45,6 +45,14 @@ namespace ScriptableObjects
             else if (context.canceled)
             {
                 JumpEvent.Invoke(false);
+            }
+        }
+
+        public void OnPause(InputAction.CallbackContext context)
+        {
+            if (context.performed)
+            {
+                PauseEvent.Invoke();
             }
         }
     }

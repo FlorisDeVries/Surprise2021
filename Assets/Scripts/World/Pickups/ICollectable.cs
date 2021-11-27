@@ -1,4 +1,5 @@
-﻿using ScriptableObjects;
+﻿using Game;
+using ScriptableObjects;
 using UnityEngine;
 
 namespace World.Pickups
@@ -10,13 +11,11 @@ namespace World.Pickups
 
     public abstract class ACollectable: MonoBehaviour, ICollectable
     {
-        [SerializeField] private ObjectiveManagerSO _objectiveManager;
-        
         protected ObjectiveType type = ObjectiveType.None;
 
         protected void RegisterCollect()
         {
-            _objectiveManager.Collect(this);
+            GameManager.Instance.ObjectiveManager.Collect(this);
         }
 
         public ObjectiveType GetObjectiveType()

@@ -1,3 +1,4 @@
+using Game;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -42,7 +43,7 @@ namespace ScriptableObjects.Stats
             if (CurrentHealth <= 0)
             {
                 PlayerDeathEvent.Invoke();
-                GameManager.Instance.ChangeState(GameState.GameOver);
+                GameManager.Instance.SetGameState(GameState.GameOver);
                 PlayerHitEvent.Invoke(direction);
             }
             else
@@ -55,7 +56,7 @@ namespace ScriptableObjects.Stats
         {
             CurrentHealth = 0;
             PlayerDeathEvent.Invoke();
-            GameManager.Instance.ChangeState(GameState.GameOver);
+            GameManager.Instance.SetGameState(GameState.GameOver);
         }
 
         public void KilledEnemy()
