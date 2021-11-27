@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: RippleCollect
   m_EditorClassIdentifier: 
   type: 1
-  _amountToCollect: 7
+  _amountToCollect: 8

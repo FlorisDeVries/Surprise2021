@@ -15,10 +15,9 @@ namespace Util
                 
                 _instance = FindObjectOfType<T>();
                 if (_instance != null) return _instance;
-                
-                var singletonObject = new GameObject(typeof(T).ToString());
-                _instance = singletonObject.AddComponent<T>();
-                return _instance;
+
+                Debug.LogWarning($"Instance not found for singleton {typeof(T)}, make sure it is added to the scene.");
+                return null;
             }
         }
 

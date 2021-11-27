@@ -167,7 +167,7 @@ GameObject:
   - component: {fileID: 40430686}
   - component: {fileID: 40430685}
   m_Layer: 5
-  m_Name: Start
+  m_Name: Level1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -207,7 +207,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sceneManager: {fileID: 11400000, guid: b9972ab6c3af0114d8e0256a8a47ef9d, type: 2}
   _currentScene: 0
-  _sceneToLoad: 1
+  _sceneToLoad: 2
 --- !u!114 &40430686
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9076,7 +9076,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Start
+  m_text: Level1
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}

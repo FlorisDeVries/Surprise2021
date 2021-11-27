@@ -22,11 +22,11 @@ namespace ScriptableObjects.Stats
         
         public event UnityAction<int> RippleCollectedEvent = delegate { };
 
-        private void OnEnable()
+        public void StartLevel()
         {
             Reset();
         }
-
+        
         private void Reset()
         {
             CurrentHealth = maxHealth;

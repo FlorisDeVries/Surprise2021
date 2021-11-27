@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using ScriptableObjects.Stats;
 using UnityEngine;
 using UnityEngine.Events;
 using Util;
@@ -16,6 +17,8 @@ namespace ScriptableObjects
 
     public class GameManager : UnitySingleton<GameManager>
     {
+        [SerializeField] private PlayerStats _player;
+        
         public GameState State { get; private set; } = GameState.Playing;
 
         [SerializeField] private ObjectiveManagerSO _objectiveManager;
@@ -31,6 +34,7 @@ namespace ScriptableObjects
         {
             Debug.Log("Starting Level");
             _objectiveManager.StartLevel();
+            _player.StartLevel();
         }
     }
 }

@@ -56,6 +56,11 @@ namespace Characters.Player
 
         private void FixedUpdate()
         {
+            if (!_stats.IsAlive)
+            {
+                return;
+            }
+            
             Animate();
             
             if (_hitEffect || GameManager.Instance.State != GameState.Playing)
@@ -65,7 +70,6 @@ namespace Characters.Player
 
             // Move our character
             _controller.Move(_horizontalMove * Time.fixedDeltaTime, _jump);
-
 
             _jump = false;
         }
