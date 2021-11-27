@@ -285,7 +285,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _acceleration: 0.6
   _inAirAcceleration: 0.1
-  _jumpForce: 600
+  _jumpForce: 750
   _wallJumpForce: 30
   _airControl: 1
   _groundCheck: {fileID: 8715946034510910784}

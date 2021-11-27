@@ -41,6 +41,14 @@ public class @GameplayActions : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""Interact"",
+                    ""type"": ""Button"",
+                    ""id"": ""6959e3ea-aca9-44b6-953c-6b5e3a74cfad"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -98,6 +106,17 @@ public class @GameplayActions : IInputActionCollection, IDisposable
                     ""action"": ""Pause"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""5c382e71-9107-4b6d-acf4-c9444eea703d"",
+                    ""path"": ""<Keyboard>/f"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""KBM"",
+                    ""action"": ""Interact"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -126,6 +145,7 @@ public class @GameplayActions : IInputActionCollection, IDisposable
         m_InGame_LeftRight = m_InGame.FindAction("LeftRight", throwIfNotFound: true);
         m_InGame_Jump = m_InGame.FindAction("Jump", throwIfNotFound: true);
         m_InGame_Pause = m_InGame.FindAction("Pause", throwIfNotFound: true);
+        m_InGame_Interact = m_InGame.FindAction("Interact", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -178,6 +198,7 @@ public class @GameplayActions : IInputActionCollection, IDisposable
     private readonly InputAction m_InGame_LeftRight;
     private readonly InputAction m_InGame_Jump;
     private readonly InputAction m_InGame_Pause;
+    private readonly InputAction m_InGame_Interact;
     public struct InGameActions
     {
         private @GameplayActions m_Wrapper;
@@ -185,6 +206,7 @@ public class @GameplayActions : IInputActionCollection, IDisposable
         public InputAction @LeftRight => m_Wrapper.m_InGame_LeftRight;
         public InputAction @Jump => m_Wrapper.m_InGame_Jump;
         public InputAction @Pause => m_Wrapper.m_InGame_Pause;
+        public InputAction @Interact => m_Wrapper.m_InGame_Interact;
         public InputActionMap Get() { return m_Wrapper.m_InGame; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -203,6 +225,9 @@ public class @GameplayActions : IInputActionCollection, IDisposable
                 @Pause.started -= m_Wrapper.m_InGameActionsCallbackInterface.OnPause;
                 @Pause.performed -= m_Wrapper.m_InGameActionsCallbackInterface.OnPause;
                 @Pause.canceled -= m_Wrapper.m_InGameActionsCallbackInterface.OnPause;
+                @Interact.started -= m_Wrapper.m_InGameActionsCallbackInterface.OnInteract;
+                @Interact.performed -= m_Wrapper.m_InGameActionsCallbackInterface.OnInteract;
+                @Interact.canceled -= m_Wrapper.m_InGameActionsCallbackInterface.OnInteract;
             }
             m_Wrapper.m_InGameActionsCallbackInterface = instance;
             if (instance != null)
@@ -216,6 +241,9 @@ public class @GameplayActions : IInputActionCollection, IDisposable
                 @Pause.started += instance.OnPause;
                 @Pause.performed += instance.OnPause;
                 @Pause.canceled += instance.OnPause;
+                @Interact.started += instance.OnInteract;
+                @Interact.performed += instance.OnInteract;
+                @Interact.canceled += instance.OnInteract;
             }
         }
     }
@@ -234,5 +262,6 @@ public class @GameplayActions : IInputActionCollection, IDisposable
         void OnLeftRight(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
         void OnPause(InputAction.CallbackContext context);
+        void OnInteract(InputAction.CallbackContext context);
     }
 }

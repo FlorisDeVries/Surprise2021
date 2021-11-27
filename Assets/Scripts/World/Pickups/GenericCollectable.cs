@@ -4,7 +4,7 @@ using UnityEngine;
 namespace World.Pickups
 {
     [RequireComponent(typeof(BoxCollider2D))]
-    public class GenericPickup : ACollectable
+    public class GenericCollectable : ACollectable
     {
         [SerializeField] private ObjectiveType _type;
         
@@ -13,7 +13,7 @@ namespace World.Pickups
             type = _type;
         }
         
-        private void OnTriggerEnter2D(Collider2D other)
+        protected virtual void OnTriggerEnter2D(Collider2D other)
         {
             if (other.CompareTag("Player"))
             {

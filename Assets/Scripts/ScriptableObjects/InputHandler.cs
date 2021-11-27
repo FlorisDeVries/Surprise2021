@@ -10,6 +10,7 @@ namespace ScriptableObjects
         public event UnityAction<float> LeftRightEvent = delegate { };
         public event UnityAction<bool> JumpEvent = delegate { };
         public event UnityAction PauseEvent = delegate { };
+        public event UnityAction InteractEvent = delegate { };
 
         private GameplayActions _gameInput;
 
@@ -53,6 +54,14 @@ namespace ScriptableObjects
             if (context.performed)
             {
                 PauseEvent.Invoke();
+            }
+        }
+
+        public void OnInteract(InputAction.CallbackContext context)
+        {
+            if (context.performed)
+            {
+                InteractEvent.Invoke();
             }
         }
     }

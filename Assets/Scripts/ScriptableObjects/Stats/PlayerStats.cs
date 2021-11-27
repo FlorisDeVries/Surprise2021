@@ -20,6 +20,7 @@ namespace ScriptableObjects.Stats
         public event UnityAction<float> PlayerHitEvent = delegate { };
         public event UnityAction KilledEnemyEvent = delegate { };
         public event UnityAction PlayerDeathEvent = delegate { };
+        public event UnityAction PlayerHealedEvent = delegate { };
         
         public event UnityAction<int> RippleCollectedEvent = delegate { };
 
@@ -57,6 +58,12 @@ namespace ScriptableObjects.Stats
             CurrentHealth = 0;
             PlayerDeathEvent.Invoke();
             GameManager.Instance.SetGameState(GameState.GameOver);
+        }
+
+        public void Heal()
+        {
+            CurrentHealth = maxHealth;
+            PlayerHealedEvent.Invoke();
         }
 
         public void KilledEnemy()

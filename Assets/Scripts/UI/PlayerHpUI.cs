@@ -13,27 +13,35 @@ namespace UI
 
         private void OnEnable()
         {
-            _stats.PlayerHitEvent += OnPlayerHit;
+            _stats.PlayerHitEvent += SyncUI;
+            _stats.PlayerHealedEvent += SyncUI;
 
             _heartSprites = new List<GameObject>();
-            for (int i = 0; i < transform.childCount; i++)
+            for (var i = 0; i < transform.childCount; i++)
             {
                 _heartSprites.Add(transform.GetChild(i).gameObject);
             }
-            OnPlayerHit(0);
+            SyncUI();
         }
 
         private void OnDisable()
         {
-            _stats.PlayerHitEvent -= OnPlayerHit;
+            _stats.PlayerHitEvent -= SyncUI;
+            _stats.PlayerHealedEvent -= SyncUI;
         }
 
-        private void OnPlayerHit(float _)
+        private void SyncUI()
         {
-            for (int i = 0; i < _heartSprites.Count; i++)
+            for (var i = 0; i < _heartSprites.Count; i++)
             {
                 _heartSprites[i].SetActive(i < _stats.CurrentHealth);
             }
         }
+
+        private void SyncUI(float _)
+        {
+            SyncUI();
+        }
+        
     }
 }

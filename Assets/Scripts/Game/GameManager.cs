@@ -18,6 +18,7 @@ namespace Game
     public class GameManager : UnitySingleton<GameManager>
     {
         [SerializeField] private PlayerStats _player;
+        public PlayerStats Player => _player;
         [SerializeField] private InputHandler _input;
 
         public GameState State { get; private set; } = GameState.Playing;
