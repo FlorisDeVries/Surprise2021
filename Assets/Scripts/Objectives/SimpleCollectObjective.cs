@@ -1,5 +1,5 @@
-﻿using Pickups;
-using UnityEngine;
+﻿using UnityEngine;
+using World.Pickups;
 
 namespace Objectives
 {

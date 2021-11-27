@@ -2,8 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Objectives;
-using Pickups;
 using UnityEngine;
+using World.Pickups;
 
 namespace ScriptableObjects
 {

@@ -51,6 +51,13 @@ namespace ScriptableObjects.Stats
             }
         }
 
+        public void InstaKill()
+        {
+            CurrentHealth = 0;
+            PlayerDeathEvent.Invoke();
+            GameManager.Instance.ChangeState(GameState.GameOver);
+        }
+
         public void KilledEnemy()
         {
             KilledEnemyEvent.Invoke();

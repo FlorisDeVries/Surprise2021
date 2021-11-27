@@ -1,7 +1,7 @@
-﻿using Pickups;
-using ScriptableObjects;
+﻿using ScriptableObjects;
 using UnityEngine;
 using UnityEngine.Events;
+using World.Pickups;
 
 namespace Objectives
 {
