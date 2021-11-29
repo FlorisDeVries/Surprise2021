@@ -93,6 +93,7 @@ GameObject:
   - component: {fileID: 8927065873663270248}
   - component: {fileID: 8927065873663270249}
   - component: {fileID: 7529931109835885575}
+  - component: {fileID: 3620058456327041130}
   m_Layer: 7
   m_Name: CryptoPickup
   m_TagString: Untagged
@@ -127,7 +128,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc80d667e0a58104eaffb038c5fa42d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _objectiveManager: {fileID: 11400000, guid: 4f92f0cfda1876f409c8bb9dc005377b, type: 2}
   _stats: {fileID: 11400000, guid: 9765bec8a9d328647a2a01ccbbc0198d, type: 2}
 --- !u!61 &7529931109835885575
 BoxCollider2D:
@@ -155,3 +155,16 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &3620058456327041130
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8927065873663270251}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83076fb2b2b01064c9f17809e604b970, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _speed: 100
