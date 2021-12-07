@@ -7,6 +7,8 @@ namespace World.Pickups
     public class GenericCollectable : ACollectable
     {
         [SerializeField] private ObjectiveType _type;
+        [SerializeField] private GameObject _particles;
+        [SerializeField] private Vector3 _particlesOffset;
         
         private void OnEnable()
         {
@@ -21,6 +23,9 @@ namespace World.Pickups
             }
 
             RegisterCollect();
+            if (_particles != null)
+                Instantiate(_particles, transform.position + _particlesOffset, Quaternion.identity);
+            
             Destroy(gameObject);
         }
     }

@@ -1,3 +1,4 @@
+using Game;
 using ScriptableObjects;
 using ScriptableObjects.Stats;
 using UnityEngine;
@@ -5,9 +6,9 @@ using UnityEngine;
 namespace World.Pickups
 {
     public class RipplePickup : ACollectable
-    {
-        [Header("Player Properties")] [SerializeField]
-        private PlayerStats _stats;
+    {        
+        [SerializeField] private PlayerStats _stats;
+        [SerializeField] private GameObject _particles;
 
         private void OnEnable()
         {
@@ -23,6 +24,7 @@ namespace World.Pickups
 
             RegisterCollect();
             _stats.CollectRipple();
+            Instantiate(_particles, transform.position, Quaternion.identity);
             Destroy(this.gameObject);
         }
     }
